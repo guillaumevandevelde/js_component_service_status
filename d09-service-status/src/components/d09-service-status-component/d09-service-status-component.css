@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.label {
+  font-weight: bold; 
+  border-radius: 1em;
+  padding: 0.5em;
+  color: white;
+  width: 100px;
+  text-align: center;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+:host([status="OK"]) .label {
+  background-color: green;
+}
+
+:host([status="NOK"]) .label{
+  background-color: red;
+}
