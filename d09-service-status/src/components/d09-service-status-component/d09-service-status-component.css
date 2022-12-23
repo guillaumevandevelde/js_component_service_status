@@ -12,10 +12,4 @@
   font-family: 'Fira Sans', sans-serif;
 }
 
-:host([status="OK"]) .label {
-  background-color: green;
-}
 
-:host([status="NOK"]) .label{
-  background-color: red;
-}

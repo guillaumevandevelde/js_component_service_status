@@ -1,4 +1,5 @@
 import { Component, Prop,Host, h } from '@stencil/core';
+import config from '../../../config.json';
 
 @Component({
   tag: 'd09-service-status-component',
@@ -12,12 +13,20 @@ export class D09ServiceStatusComponent {
   @Prop() statusText? = 'Status';
   @Prop() onlineText? = 'Online';
   @Prop() offlineText? = 'Offline';
+  @Prop() onlineColor? = 'green';
+  @Prop() offlineColor? = 'red';
 
   render() {      
     console.log('render')
     return (      
       <Host status>
-        <div class='label'>{this.statusText}</div>        
+        <div class='label'>
+          <style> {           
+             `.label{background-color: ${this.status === 'OK' ? this.onlineColor : this.offlineColor}};`            
+            }
+          </style>
+          {this.status === 'OK' ? this.onlineText : this.offlineText}          
+        </div>        
       </Host>
     );
   }
@@ -31,26 +40,13 @@ export class D09ServiceStatusComponent {
       {
         headers: {
         'Accept': 'application/json',
-        'apiKey':'',              
+        'apiKey': config.API_KEY,              
         }
       }
       )      
       .then(response =>{
-        this.status =response.statusText;
-        this.translateStatus();
+        this.status =response.statusText;       
       });
       
   }
-
-
-  translateStatus() {
-    if(this.status === 'OK') {
-      this.statusText = this.onlineText;           
-         
-    }else{
-      this.statusText = this.offlineText;
-   
-    }      
-  }
-
 }

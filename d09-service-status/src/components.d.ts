@@ -8,7 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface D09ServiceStatusComponent {
         "apiToCheck": string;
+        "offlineColor"?: string;
         "offlineText"?: string;
+        "onlineColor"?: string;
         "onlineText"?: string;
         "status": string;
         "statusText"?: string;
@@ -28,7 +30,9 @@ declare global {
 declare namespace LocalJSX {
     interface D09ServiceStatusComponent {
         "apiToCheck": string;
+        "offlineColor"?: string;
         "offlineText"?: string;
+        "onlineColor"?: string;
         "onlineText"?: string;
         "status"?: string;
         "statusText"?: string;
