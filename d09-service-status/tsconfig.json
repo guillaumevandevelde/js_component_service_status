@@ -4,6 +4,7 @@
     "allowUnreachableCode": false,
     "declaration": false,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "lib": [
       "dom",
       "es2017"
@@ -17,7 +18,7 @@
     "jsxFactory": "h"
   },
   "include": [
-    "src"
+    "src"    
   ],
   "exclude": [
     "node_modules"

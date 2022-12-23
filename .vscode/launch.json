@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+       "type": "chrome",
+       "request": "attach",
+       "name": "Attach to Chrome Stencil",
+       "port": 3333,
+       "webRoot": "${workspaceFolder}/www"
+      },
+      {
+       "type": "chrome",
+       "request": "launch",
+       "name": "Launch Chrome against localhost Stencil",
+       "url": "http://localhost:3333",
+       "sourceMaps": true,
+       "webRoot": "${workspaceFolder}/www"
+      }
+     ]
+  }
