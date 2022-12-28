@@ -1,4 +1,4 @@
-import { Component, Prop,Host, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 import config from '../../../config.json';
 
 @Component({
@@ -7,46 +7,42 @@ import config from '../../../config.json';
   shadow: true,
 })
 export class D09ServiceStatusComponent {
-
   @Prop() apiToCheck!: string;
-  @Prop( {reflect: true, mutable : true }) status: string;
+  @Prop({ reflect: true, mutable: true }) status: string;
   @Prop() statusText? = 'Status';
   @Prop() onlineText? = 'Online';
   @Prop() offlineText? = 'Offline';
   @Prop() onlineColor? = 'green';
   @Prop() offlineColor? = 'red';
 
-  render() {      
-    console.log('render')
-    return (      
+  render() {
+    console.log('render');
+    return (
       <Host status>
-        <div class='label'>
-          <style> {           
-             `.label{background-color: ${this.status === 'OK' ? this.onlineColor : this.offlineColor}};`            
-            }
-          </style>
-          {this.status === 'OK' ? this.onlineText : this.offlineText}          
-        </div>        
+        <div class="label">
+          <style> {`.label{background-color: ${this.status === 'OK' ? this.onlineColor : this.offlineColor}};`}</style>
+          {this.status === 'OK' ? this.onlineText : this.offlineText}
+        </div>
       </Host>
     );
   }
 
   constructor() {
-    this.getServiceStatus();    
+    this.getServiceStatus();
   }
 
-  getServiceStatus() {
-    fetch(this.apiToCheck, 
-      {
+  async getServiceStatus() {
+    try {
+      fetch(this.apiToCheck, {
         headers: {
-        'Accept': 'application/json',
-        'apiKey': config.API_KEY,              
-        }
-      }
-      )      
-      .then(response =>{
-        this.status =response.statusText;       
+          Accept: 'application/json',
+          apiKey: config.API_KEY,
+        },
+      }).then(response => {
+        this.status = response.statusText;
       });
-      
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
